@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Board Game Recommendations</title>
+	<style>
+		body {
+			background-color: #F8F8FF;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			color: #000080;
+			font-size: 48px;
+			text-shadow: 2px 2px #ADD8E6;
+		}
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+		}
+		label {
+			font-size: 24px;
+			margin-bottom: 20px;
+		}
+		input[type="text"], select {
+			width: 50%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+			font-size: 18px;
+			margin-bottom: 20px;
+		}
+		button[type="submit"] {
+			background-color: #000080;
+			color: #FFFFFF;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 18px;
+			cursor: pointer;
+			margin-top: 20px;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		}
+		button[type="submit"]:hover {
+			background-color: #ADD8E6;
+			color: #000080;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		}
+		#recommendations {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			margin-top: 50px;
+		}
+		.game {
+			background-color: #FFFFFF;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+			border-radius: 5px;
+			padding: 20px;
+			margin: 20px;
+			width: 30%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+		.game img {
+			max-width: 100%;
+			max-height: 200px;
+			margin-bottom: 20px;
+		}
+		.game h2 {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+		.game p {
+			font-size: 18px;
+			line-height: 1.5;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Board Game Recommendations</h1>
+	</header>
+	<main>
+		<form method="POST" action="http://grimmthething.pythonanywhere.com/recommendations" target="popup" onsubmit="window.open('about:blank','popup','width=600,height=400')">
+			<label for="preferences">Enter your board game preferences:</label>
+			<input type="text" id="preferences" name="preferences" required>
+			<label for="numPlayers">Number of players:</label>
+			<select id="numPlayers" name="numPlayers">
+				<option value="Any">Any</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5+">5+</option>
+			</select>
+			<label for="theme">Theme:</label>
+			<select id="theme" name="theme">
+				<option value="Any">Any</option>
+				<option value="Fantasy">Fantasy</option>
+				<option value="Sci-Fi">Sci-Fi</option>
+				<option value="Horror">Horror</option>
+				<option value="Historical">Historical</option>
+				<option value="Party">Party</option>
+			</select>
+			<button type="submit">Get recommendations</button>
+		</form>
+	</main>
+	<script>
+		// Create a popup window to display the recommendations
+		window.open('about:blank', 'popup', 'width=600,height=400');
+
+		// Handle the form submission
+		document.querySelector('form').addEventListener('submit', function(event) {
+			event.preventDefault();
+			var form = event.target;
+			var popup = window.open('about:blank', 'popup', 'width=600,height=400');
+			form.target = 'popup';
+			form.submit();
+		});
+	</script>
+</body>
